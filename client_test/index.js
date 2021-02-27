@@ -50,12 +50,13 @@ navigator.geolocation.getCurrentPosition(function(position) {
     velocity_up = 0;
 
     function gameLoop() {
-        if (inputdata.dpad.right) {
+        /*if (inputdata.dpad.right) {
             mysprite.x += 5;
         }
         if (inputdata.dpad.left) {
             mysprite.x -= 5;
-        }
+        }*/
+        mysprite.x += inputdata.joystick1.x * 10;
 
         if (!mysprite.boxcollision(floor)) {
             velocity_up -= 1;
