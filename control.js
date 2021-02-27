@@ -154,7 +154,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     joystick2.style.height = "40vh";
     joystick2.style.top = "50vh";
     joystick2.style.right = "40vh";
-    joystick2.style.borderRadius = "20vh";
+    joystick2.style.borderRadius = "25vh";
     var draggable2 = document.createElement("div");
     draggable2.style.position = "absolute";
     draggable2clientrect = joystick2.getBoundingClientRect();
