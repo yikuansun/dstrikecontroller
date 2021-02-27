@@ -23,7 +23,7 @@ var inputdata = {
 
 navigator.geolocation.getCurrentPosition(function(position) {
     var ably = new Ably.Realtime(API_KEY); // make a file called api_key.js with the contents const API_KEY = "whatever";
-    var channel = ably.channels.get(position.coords.longitude.toFixed(3) + ";" + position.coords.latitude.toFixed(3));
+    var channel = ably.channels.get(position.coords.longitude.toFixed(2) + ";" + position.coords.latitude.toFixed(2));
     channel.publish("inputdata", inputdata);
     
     var cover = document.createElement("div");
