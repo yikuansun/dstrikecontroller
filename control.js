@@ -113,6 +113,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     draggable1.style.top = (draggable1clientrect.height / 2).toString() + "px";
     draggable1.style.transform = "translate(-50%, -50%)";
     draggable1.style.backgroundImage = "url(images/radgrad.png)";
+    draggable1.style.backgroundSize = "100% 100%";
     draggable1.style.width = "30vh";
     draggable1.style.height = "30vh";
     draggable1.style.borderRadius = "15vh";
@@ -161,6 +162,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     draggable2.style.top = (draggable2clientrect.height / 2).toString() + "px";
     draggable2.style.transform = "translate(-50%, -50%)";
     draggable2.style.backgroundImage = "url(images/radgrad.png)";
+    draggable2.style.backgroundSize = "100% 100%";
     draggable2.style.width = "30vh";
     draggable2.style.height = "30vh";
     draggable2.style.borderRadius = "15vh";
