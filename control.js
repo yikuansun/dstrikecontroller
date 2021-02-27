@@ -123,10 +123,12 @@ document.querySelector("button").addEventListener("click", function() {
     });
     draggable1.addEventListener("touchmove", function(e) {
         e = e.touches[0] || e.changedTouches[0];
-        inputdata.joystick1.x = (e.clientX - joy1initial[0]) / draggable1clientrect.width;
-        inputdata.joystick1.y = (e.clientY - joy1initial[1]) / draggable1clientrect.height;
-        draggable1.style.left = (e.clientX - joy1initial[0] + draggable1clientrect.width / 2).toString() + "px";
-        draggable1.style.top = (e.clientY - joy1initial[1] + draggable1clientrect.height / 2).toString() + "px";
+        if (Math.sqrt(Math.pow((e.clientX - joy1initial[0]) / draggable1clientrect.width, 2) + Math.pow((e.clientY - joy1initial[1]) / draggable1clientrect.height, 2)) <= 0.35) {
+            inputdata.joystick1.x = (e.clientX - joy1initial[0]) / draggable1clientrect.width;
+            inputdata.joystick1.y = (e.clientY - joy1initial[1]) / draggable1clientrect.height;
+            draggable1.style.left = (e.clientX - joy1initial[0] + draggable1clientrect.width / 2).toString() + "px";
+            draggable1.style.top = (e.clientY - joy1initial[1] + draggable1clientrect.height / 2).toString() + "px";
+        }
         if (joy1frame % 10 == 0) channel.publish("inputdata", inputdata);
         joy1frame++;
     });
@@ -167,10 +169,12 @@ document.querySelector("button").addEventListener("click", function() {
     });
     draggable2.addEventListener("touchmove", function(e) {
         e = e.touches[0] || e.changedTouches[0];
-        inputdata.joystick2.x = (e.clientX - joy2initial[0]) / draggable2clientrect.width;
-        inputdata.joystick2.y = (e.clientY - joy2initial[1]) / draggable2clientrect.height;
-        draggable2.style.left = (e.clientX - joy2initial[0] + draggable2clientrect.width / 2).toString() + "px";
-        draggable2.style.top = (e.clientY - joy2initial[1] + draggable2clientrect.height / 2).toString() + "px";
+        if (Math.sqrt(Math.pow((e.clientX - joy2initial[0]) / draggable2clientrect.width, 2) + Math.pow((e.clientY - joy2initial[1]) / draggable2clientrect.height, 2)) <= 0.35) {
+            inputdata.joystick2.x = (e.clientX - joy2initial[0]) / draggable2clientrect.width;
+            inputdata.joystick2.y = (e.clientY - joy2initial[1]) / draggable2clientrect.height;
+            draggable2.style.left = (e.clientX - joy2initial[0] + draggable2clientrect.width / 2).toString() + "px";
+            draggable2.style.top = (e.clientY - joy2initial[1] + draggable2clientrect.height / 2).toString() + "px";
+        }
         if (joy2frame % 20 == 0) channel.publish("inputdata", inputdata);
         joy2frame++;
     });
