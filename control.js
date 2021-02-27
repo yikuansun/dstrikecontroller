@@ -136,6 +136,13 @@ navigator.geolocation.getCurrentPosition(function(position) {
             draggable1.style.left = (e.clientX - joy1initial[0] + draggable1clientrect.width / 2).toString() + "px";
             draggable1.style.top = (e.clientY - joy1initial[1] + draggable1clientrect.height / 2).toString() + "px";
         }
+        else {
+            var angle = Math.atan2((e.clientY - joy1initial[1]) / draggable1clientrect.height, (e.clientX - joy1initial[0]) / draggable1clientrect.width);
+            inputdata.joystick1.x = 0.35 * Math.cos(angle);
+            inputdata.joystick1.y = 0.35 * Math.sin(angle);
+            draggable1.style.left = (draggable1clientrect.width / 2 + 0.35 * draggable1clientrect.width * Math.cos(angle)).toString() + "px";
+            draggable1.style.top = (draggable1clientrect.height / 2 + 0.35 * draggable1clientrect.height * Math.sin(angle)).toString() + "px";
+        }
         if (joy1frame % 10 == 0) channel.publish("inputdata", inputdata);
         joy1frame++;
     });
@@ -184,6 +191,13 @@ navigator.geolocation.getCurrentPosition(function(position) {
             inputdata.joystick2.y = (e.clientY - joy2initial[1]) / draggable2clientrect.height;
             draggable2.style.left = (e.clientX - joy2initial[0] + draggable2clientrect.width / 2).toString() + "px";
             draggable2.style.top = (e.clientY - joy2initial[1] + draggable2clientrect.height / 2).toString() + "px";
+        }
+        else {
+            var angle = Math.atan2((e.clientY - joy2initial[1]) / draggable2clientrect.height, (e.clientX - joy2initial[0]) / draggable2clientrect.width);
+            inputdata.joystick2.x = 0.35 * Math.cos(angle);
+            inputdata.joystick2.y = 0.35 * Math.sin(angle);
+            draggable2.style.left = (draggable2clientrect.width / 2 + 0.35 * draggable2clientrect.width * Math.cos(angle)).toString() + "px";
+            draggable2.style.top = (draggable2clientrect.height / 2 + 0.35 * draggable2clientrect.height * Math.sin(angle)).toString() + "px";
         }
         if (joy2frame % 10 == 0) channel.publish("inputdata", inputdata);
         joy2frame++;
