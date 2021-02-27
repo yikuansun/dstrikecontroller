@@ -93,8 +93,8 @@ document.querySelector("button").addEventListener("click", function() {
     joystick1.style.position = "fixed";
     joystick1.style.width = "40vh";
     joystick1.style.height = "40vh";
-    joystick1.style.top = "45vh";
-    joystick1.style.left = "45vh";
+    joystick1.style.top = "50vh";
+    joystick1.style.left = "40vh";
     joystick1.style.borderRadius = "25vh";
     var draggable1 = document.createElement("div");
     draggable1.style.position = "absolute";
@@ -137,8 +137,8 @@ document.querySelector("button").addEventListener("click", function() {
     joystick2.style.position = "fixed";
     joystick2.style.width = "40vh";
     joystick2.style.height = "40vh";
-    joystick2.style.top = "45vh";
-    joystick2.style.right = "45vh";
+    joystick2.style.top = "50vh";
+    joystick2.style.right = "40vh";
     joystick2.style.borderRadius = "20vh";
     var draggable2 = document.createElement("div");
     draggable2.style.position = "absolute";
