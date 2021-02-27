@@ -213,7 +213,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         channel.publish("inputdata", inputdata);
         this.style.opacity = "1";
     });
-    var yellowbutton = new daize.sprite(15, 15, 10, 25, 3 * Math.PI / 2, "vh");
+    var yellowbutton = new daize.sprite(15, 15, 10, 25, 0, "vh");
     yellowbutton.costume = "images/elements/sun.png";
     elementpad.addsprite(yellowbutton);
     yellowbutton.addEventListener("touchstart", function(e) {
@@ -227,7 +227,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         channel.publish("inputdata", inputdata);
         this.style.opacity = "1";
     });
-    var bluebutton = new daize.sprite(15, 15, 25, 40, Math.PI, "vh");
+    var bluebutton = new daize.sprite(15, 15, 25, 40, 0, "vh");
     bluebutton.costume = "images/elements/water.png";
     elementpad.addsprite(bluebutton);
     bluebutton.addEventListener("touchstart", function(e) {
@@ -241,7 +241,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         channel.publish("inputdata", inputdata);
         this.style.opacity = "1";
     });
-    var redbutton = new daize.sprite(15, 15, 40, 25, Math.PI / 2, "vh");
+    var redbutton = new daize.sprite(15, 15, 40, 25, 0, "vh");
     redbutton.costume = "images/elements/fire.png";
     elementpad.addsprite(redbutton);
     redbutton.addEventListener("touchstart", function(e) {
