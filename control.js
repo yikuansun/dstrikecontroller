@@ -44,7 +44,8 @@ document.querySelector("button").addEventListener("click", function() {
     var upbutton = new daize.sprite(12.5, 25, 25, 12.5, 0, "vh");
     upbutton.costume = "images/dpad/up.png";
     dpad.addsprite(upbutton);
-    upbutton.addEventListener("touchstart", function() {
+    upbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.dpad.up = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -57,7 +58,8 @@ document.querySelector("button").addEventListener("click", function() {
     var leftbutton = new daize.sprite(12.5, 25, 12.5, 25, 3 * Math.PI / 2, "vh");
     leftbutton.costume = "images/dpad/up.png";
     dpad.addsprite(leftbutton);
-    leftbutton.addEventListener("touchstart", function() {
+    leftbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.dpad.left = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -70,7 +72,8 @@ document.querySelector("button").addEventListener("click", function() {
     var downbutton = new daize.sprite(12.5, 25, 25, 37.5, Math.PI, "vh");
     downbutton.costume = "images/dpad/up.png";
     dpad.addsprite(downbutton);
-    downbutton.addEventListener("touchstart", function() {
+    downbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.dpad.down = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -83,7 +86,8 @@ document.querySelector("button").addEventListener("click", function() {
     var rightbutton = new daize.sprite(12.5, 25, 37.5, 25, Math.PI / 2, "vh");
     rightbutton.costume = "images/dpad/up.png";
     dpad.addsprite(rightbutton);
-    rightbutton.addEventListener("touchstart", function() {
+    rightbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.dpad.right = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -117,11 +121,13 @@ document.querySelector("button").addEventListener("click", function() {
     var joy1initial = [0, 0];
     var joy1frame = 0;
     draggable1.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         e = e.touches[0] || e.changedTouches[0];
         joy1initial = [e.clientX, e.clientY];
         joy1frame = 0;
     });
     draggable1.addEventListener("touchmove", function(e) {
+        e.preventDefault();
         e = e.touches[0] || e.changedTouches[0];
         if (Math.sqrt(Math.pow((e.clientX - joy1initial[0]) / draggable1clientrect.width, 2) + Math.pow((e.clientY - joy1initial[1]) / draggable1clientrect.height, 2)) <= 0.35) {
             inputdata.joystick1.x = (e.clientX - joy1initial[0]) / draggable1clientrect.width;
@@ -163,11 +169,13 @@ document.querySelector("button").addEventListener("click", function() {
     var joy2initial = [0, 0];
     var joy2frame = 0;
     draggable2.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         e = e.touches[0] || e.changedTouches[0];
         joy2initial = [e.clientX, e.clientY];
         joy2frame = 0;
     });
     draggable2.addEventListener("touchmove", function(e) {
+        e.preventDefault();
         e = e.touches[0] || e.changedTouches[0];
         if (Math.sqrt(Math.pow((e.clientX - joy2initial[0]) / draggable2clientrect.width, 2) + Math.pow((e.clientY - joy2initial[1]) / draggable2clientrect.height, 2)) <= 0.35) {
             inputdata.joystick2.x = (e.clientX - joy2initial[0]) / draggable2clientrect.width;
@@ -195,7 +203,7 @@ document.querySelector("button").addEventListener("click", function() {
     var blackbutton = new daize.sprite(15, 15, 25, 12.5, 0, "vh");
     blackbutton.costume = "images/elements/idk.png";
     elementpad.addsprite(blackbutton);
-    blackbutton.addEventListener("touchstart", function() {
+    blackbutton.addEventListener("touchstart", function(e) {
         inputdata.elementpad.black = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -208,7 +216,8 @@ document.querySelector("button").addEventListener("click", function() {
     var yellowbutton = new daize.sprite(15, 15, 12.5, 25, 3 * Math.PI / 2, "vh");
     yellowbutton.costume = "images/elements/sun.png";
     elementpad.addsprite(yellowbutton);
-    yellowbutton.addEventListener("touchstart", function() {
+    yellowbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.elementpad.yellow = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -221,7 +230,8 @@ document.querySelector("button").addEventListener("click", function() {
     var bluebutton = new daize.sprite(15, 15, 25, 37.5, Math.PI, "vh");
     bluebutton.costume = "images/elements/water.png";
     elementpad.addsprite(bluebutton);
-    bluebutton.addEventListener("touchstart", function() {
+    bluebutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.elementpad.blue = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
@@ -234,7 +244,8 @@ document.querySelector("button").addEventListener("click", function() {
     var redbutton = new daize.sprite(15, 15, 37.5, 25, Math.PI / 2, "vh");
     redbutton.costume = "images/elements/fire.png";
     elementpad.addsprite(redbutton);
-    redbutton.addEventListener("touchstart", function() {
+    redbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
         inputdata.elementpad.red = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
