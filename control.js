@@ -183,7 +183,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
             draggable2.style.left = (e.clientX - joy2initial[0] + draggable2clientrect.width / 2).toString() + "px";
             draggable2.style.top = (e.clientY - joy2initial[1] + draggable2clientrect.height / 2).toString() + "px";
         }
-        if (joy2frame % 20 == 0) channel.publish("inputdata", inputdata);
+        if (joy2frame % 10 == 0) channel.publish("inputdata", inputdata);
         joy2frame++;
     });
     draggable2.addEventListener("touchend", function() {
