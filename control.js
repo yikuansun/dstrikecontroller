@@ -12,6 +12,12 @@ var inputdata = {
     joystick2: {
         x: 0,
         y: 0
+    },
+    elementpad: {
+        black: false,
+        yellow: false,
+        red: false,
+        blue: false
     }
 };
 
@@ -174,5 +180,64 @@ document.querySelector("button").addEventListener("click", function() {
         inputdata.joystick2.x = 0;
         inputdata.joystick2.y = 0;
         channel.publish("inputdata", inputdata);
+    });
+    
+    var elementpad = new daize.displayCanvas(50, 50, "vh");
+    cover.appendChild(elementpad);
+    elementpad.style.backgroundColor = "";
+    elementpad.style.position = "fixed";
+    elementpad.style.top = "6.9vh";
+    elementpad.style.right = "6.9vh";
+    var blackbutton = new daize.sprite(15, 15, 25, 12.5, 0, "vh");
+    blackbutton.costume = "images/elements/idk.png";
+    elementpad.addsprite(blackbutton);
+    blackbutton.addEventListener("touchstart", function() {
+        inputdata.elementpad.black = true;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "0.5";
+    });
+    blackbutton.addEventListener("touchend", function() {
+        inputdata.elementpad.black = false;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "1";
+    });
+    var yellowbutton = new daize.sprite(15, 15, 12.5, 25, 3 * Math.PI / 2, "vh");
+    yellowbutton.costume = "images/elements/sun.png";
+    elementpad.addsprite(yellowbutton);
+    yellowbutton.addEventListener("touchstart", function() {
+        inputdata.elementpad.yellow = true;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "0.5";
+    });
+    yellowbutton.addEventListener("touchend", function() {
+        inputdata.elementpad.yellow = false;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "1";
+    });
+    var bluebutton = new daize.sprite(15, 15, 25, 37.5, Math.PI, "vh");
+    bluebutton.costume = "images/elements/water.png";
+    elementpad.addsprite(bluebutton);
+    bluebutton.addEventListener("touchstart", function() {
+        inputdata.elementpad.blue = true;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "0.5";
+    });
+    bluebutton.addEventListener("touchend", function() {
+        inputdata.elementpad.blue = false;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "1";
+    });
+    var redbutton = new daize.sprite(15, 15, 37.5, 25, Math.PI / 2, "vh");
+    redbutton.costume = "images/elements/fire.png";
+    elementpad.addsprite(redbutton);
+    redbutton.addEventListener("touchstart", function() {
+        inputdata.elementpad.red = true;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "0.5";
+    });
+    redbutton.addEventListener("touchend", function() {
+        inputdata.elementpad.red = false;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "1";
     });
 });
