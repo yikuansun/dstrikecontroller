@@ -8,6 +8,10 @@ var inputdata = {
     joystick1: {
         x: 0,
         y: 0
+    },
+    joystick2: {
+        x: 0,
+        y: 0
     }
 };
 
@@ -125,6 +129,50 @@ document.querySelector("button").addEventListener("click", function() {
         draggable1.style.top = (draggable1clientrect.height / 2).toString() + "px";
         inputdata.joystick1.x = 0;
         inputdata.joystick1.y = 0;
+        channel.publish("inputdata", inputdata);
+    });
+
+    var joystick2 = document.createElement("div");
+    cover.appendChild(joystick2);
+    joystick2.style.position = "fixed";
+    joystick2.style.width = "40vh";
+    joystick2.style.height = "40vh";
+    joystick2.style.top = "45vh";
+    joystick2.style.right = "45vh";
+    joystick2.style.borderRadius = "20vh";
+    var draggable2 = document.createElement("div");
+    draggable2.style.position = "absolute";
+    draggable2clientrect = joystick2.getBoundingClientRect();
+    draggable2.style.left = (draggable2clientrect.width / 2).toString() + "px";
+    draggable2.style.top = (draggable2clientrect.height / 2).toString() + "px";
+    draggable2.style.transform = "translate(-50%, -50%)";
+    draggable2.style.backgroundColor = "grey";
+    draggable2.style.width = "30vh";
+    draggable2.style.height = "30vh";
+    draggable2.style.borderRadius = "15vh";
+    joystick2.appendChild(draggable2);
+    joystick2.style.border = "1vh solid grey";
+    var joy2initial = [0, 0];
+    var joy2frame = 0;
+    draggable2.addEventListener("touchstart", function(e) {
+        e = e.touches[0] || e.changedTouches[0];
+        joy2initial = [e.clientX, e.clientY];
+        joy2frame = 0;
+    });
+    draggable2.addEventListener("touchmove", function(e) {
+        e = e.touches[0] || e.changedTouches[0];
+        inputdata.joystick2.x = (e.clientX - joy2initial[0]) / draggable2clientrect.width;
+        inputdata.joystick2.y = (e.clientY - joy2initial[1]) / draggable2clientrect.height;
+        draggable2.style.left = (e.clientX - joy2initial[0] + draggable2clientrect.width / 2).toString() + "px";
+        draggable2.style.top = (e.clientY - joy2initial[1] + draggable2clientrect.height / 2).toString() + "px";
+        if (joy2frame % 20 == 0) channel.publish("inputdata", inputdata);
+        joy2frame++;
+    });
+    draggable2.addEventListener("touchend", function() {
+        draggable2.style.left = (draggable2clientrect.width / 2).toString() + "px";
+        draggable2.style.top = (draggable2clientrect.height / 2).toString() + "px";
+        inputdata.joystick2.x = 0;
+        inputdata.joystick2.y = 0;
         channel.publish("inputdata", inputdata);
     });
 });
