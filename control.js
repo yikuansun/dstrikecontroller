@@ -123,8 +123,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var joy1frame = 0;
     draggable1.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        if (firsttouch == 0) e = e.touches[0] || e.changedTouches[0];
-        else e = e.touches[1] || e.changedTouches[1];
+        e = e.touches[0] || e.changedTouches[0];
         joy1initial = [e.clientX, e.clientY];
         joy1frame = 0;
     });
@@ -180,8 +179,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var joy2frame = 0;
     draggable2.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        if (firsttouch == 0) e = e.touches[0] || e.changedTouches[0];
-        else e = e.touches[1] || e.changedTouches[1];
+        e = e.touches[0] || e.changedTouches[0];
         joy2initial = [e.clientX, e.clientY];
         joy2frame = 0;
     });
