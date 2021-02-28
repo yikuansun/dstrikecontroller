@@ -123,13 +123,23 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var joy1frame = 0;
     draggable1.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        for (touch of e.touches) {
+            if (touch.target == this) {
+                e = touch;
+                break;
+            }
+        }
         joy1initial = [e.clientX, e.clientY];
         joy1frame = 0;
     });
     draggable1.addEventListener("touchmove", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        for (touch of e.touches) {
+            if (touch.target == this) {
+                e = touch;
+                break;
+            }
+        }
         if (Math.sqrt(Math.pow((e.clientX - joy1initial[0]) / draggable1clientrect.width, 2) + Math.pow((e.clientY - joy1initial[1]) / draggable1clientrect.height, 2)) <= 0.35) {
             inputdata.joystick1.x = (e.clientX - joy1initial[0]) / draggable1clientrect.width;
             inputdata.joystick1.y = (e.clientY - joy1initial[1]) / draggable1clientrect.height;
@@ -179,13 +189,23 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var joy2frame = 0;
     draggable2.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        for (touch of e.touches) {
+            if (touch.target == this) {
+                e = touch;
+                break;
+            }
+        }
         joy2initial = [e.clientX, e.clientY];
         joy2frame = 0;
     });
     draggable2.addEventListener("touchmove", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        for (touch of e.touches) {
+            if (touch.target == this) {
+                e = touch;
+                break;
+            }
+        }
         if (Math.sqrt(Math.pow((e.clientX - joy2initial[0]) / draggable2clientrect.width, 2) + Math.pow((e.clientY - joy2initial[1]) / draggable2clientrect.height, 2)) <= 0.35) {
             inputdata.joystick2.x = (e.clientX - joy2initial[0]) / draggable2clientrect.width;
             inputdata.joystick2.y = (e.clientY - joy2initial[1]) / draggable2clientrect.height;
