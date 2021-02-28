@@ -1,5 +1,5 @@
 ## Usage in your own programs
-Copy `control.html` and `control.js` into your own webapp directory. Create `api_key.js` [(as shown below)](#api-key-setup). Tell users to go to `control.html` (whatever its URL is in the case of your webapp) on Google Chrome on their mobile phone and to hold the phone horizontally.  
+Copy `control.html` and `control.js` and the whole images folder into your own webapp directory. Create `api_key.js` [(as shown below)](#api-key-setup). Tell users to go to `control.html` (whatever its URL is in the case of your webapp) on Google Chrome on their mobile phone and to hold the phone horizontally.  
 If you used DStrike in your project and want to be nice, please credit me. If you don't want to be nice, then don't credit me.
 
 ## API key setup
