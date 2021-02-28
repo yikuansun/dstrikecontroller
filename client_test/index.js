@@ -67,9 +67,10 @@ navigator.geolocation.getCurrentPosition(function(position) {
                 mysprite.y -= 1;
             }
             mysprite.y += 1;
-            if (inputdata.elementpad.blue) {
+            /*if (inputdata.elementpad.blue) {
                 velocity_up = 10;
-            }
+            }*/
+            if (inputdata.joystick2.y < 0) velocity_up = -30 * inputdata.joystick2.y;
         }
         mysprite.movevec(velocity_up, Math.PI / 2);
         requestAnimationFrame(gameLoop);
