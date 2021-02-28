@@ -29,6 +29,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
     channel.subscribe('inputdata', function(message) {
         inputdata = message.data;
+        //document.querySelector("#jsondisplay").innerText = JSON.stringify(message.data);
     });
 
     const global_unit_type = "px";
