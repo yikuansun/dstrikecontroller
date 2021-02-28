@@ -98,6 +98,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
         this.style.opacity = "1";
     });
 
+    var firsttouch = 0;
+
     var joystick1 = document.createElement("div");
     cover.appendChild(joystick1);
     joystick1.style.position = "fixed";
@@ -126,10 +128,12 @@ navigator.geolocation.getCurrentPosition(function(position) {
         e = e.touches[0] || e.changedTouches[0];
         joy1initial = [e.clientX, e.clientY];
         joy1frame = 0;
+        if (firsttouch == 0) firsttouch = 1;
     });
     draggable1.addEventListener("touchmove", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        if (firsttouch == 1) e = e.touches[0] || e.changedTouches[0];
+        else e = e.touches[1] || e.changedTouches[1];
         if (Math.sqrt(Math.pow((e.clientX - joy1initial[0]) / draggable1clientrect.width, 2) + Math.pow((e.clientY - joy1initial[1]) / draggable1clientrect.height, 2)) <= 0.35) {
             inputdata.joystick1.x = (e.clientX - joy1initial[0]) / draggable1clientrect.width;
             inputdata.joystick1.y = (e.clientY - joy1initial[1]) / draggable1clientrect.height;
@@ -152,6 +156,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.joystick1.x = 0;
         inputdata.joystick1.y = 0;
         channel.publish("inputdata", inputdata);
+        if (firsttouch == 1) firsttouch = 0;
     });
 
     var joystick2 = document.createElement("div");
@@ -182,10 +187,12 @@ navigator.geolocation.getCurrentPosition(function(position) {
         e = e.touches[0] || e.changedTouches[0];
         joy2initial = [e.clientX, e.clientY];
         joy2frame = 0;
+        if (firsttouch == 0) firsttouch = 2;
     });
     draggable2.addEventListener("touchmove", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        if (firsttouch == 2) e = e.touches[0] || e.changedTouches[0];
+        else e = e.touches[1] || e.changedTouches[1];
         if (Math.sqrt(Math.pow((e.clientX - joy2initial[0]) / draggable2clientrect.width, 2) + Math.pow((e.clientY - joy2initial[1]) / draggable2clientrect.height, 2)) <= 0.35) {
             inputdata.joystick2.x = (e.clientX - joy2initial[0]) / draggable2clientrect.width;
             inputdata.joystick2.y = (e.clientY - joy2initial[1]) / draggable2clientrect.height;
@@ -208,6 +215,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.joystick2.x = 0;
         inputdata.joystick2.y = 0;
         channel.publish("inputdata", inputdata);
+        if (firsttouch == 2) firsttouch = 0;
     });
     
     var elementpad = new daize.displayCanvas(50, 50, "vh");
