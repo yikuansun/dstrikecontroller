@@ -125,7 +125,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var joy1frame = 0;
     draggable1.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        if (firsttouch == 0) e = e.touches[0] || e.changedTouches[0];
+        else e = e.touches[1] || e.changedTouches[1];
         joy1initial = [e.clientX, e.clientY];
         joy1frame = 0;
         if (firsttouch == 0) firsttouch = 1;
@@ -184,7 +185,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var joy2frame = 0;
     draggable2.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        e = e.touches[0] || e.changedTouches[0];
+        if (firsttouch == 0) e = e.touches[0] || e.changedTouches[0];
+        else e = e.touches[1] || e.changedTouches[1];
         joy2initial = [e.clientX, e.clientY];
         joy2frame = 0;
         if (firsttouch == 0) firsttouch = 2;
