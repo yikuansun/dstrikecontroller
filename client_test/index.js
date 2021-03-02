@@ -19,7 +19,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
             yellow: false,
             red: false,
             blue: false
-        }
+        },
+        menubutton: false
     };
     let my_loc = position.coords.longitude.toFixed(2) + ";" + position.coords.latitude.toFixed(2);
     document.querySelector("#ip").innerText = my_loc;
@@ -29,7 +30,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
     channel.subscribe('inputdata', function(message) {
         inputdata = message.data;
-        //document.querySelector("#jsondisplay").innerText = JSON.stringify(message.data);
+        document.querySelector("#jsondisplay").innerText = JSON.stringify(message.data);
     });
 
     const global_unit_type = "px";
