@@ -23,7 +23,8 @@ document.querySelector("button").addEventListener("click", function() {
             red: false,
             blue: false
         },
-        menubutton: false
+        menubutton: false,
+        selectbutton: false
     };
 
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -315,6 +316,28 @@ document.querySelector("button").addEventListener("click", function() {
         });
         menubutton.addEventListener("touchend", function() {
             inputdata.menubutton = false;
+            channel.publish("inputdata", inputdata);
+            this.style.opacity = "1";
+        });
+
+        var selectbutton = document.createElement("div");
+        selectbutton.style.width = "20vh";
+        selectbutton.style.height = "5vh";
+        selectbutton.style.position = "absolute";
+        selectbutton.style.transform = "translate(-50%, -50%)";
+        selectbutton.style.top = "30vh";
+        selectbutton.style.left = "50vw";
+        selectbutton.style.backgroundImage = "url(images/select.png)";
+        selectbutton.style.backgroundSize = "100% 100%";
+        cover.appendChild(selectbutton);
+        selectbutton.addEventListener("touchstart", function(e) {
+            e.preventDefault();
+            inputdata.selectbutton = true;
+            channel.publish("inputdata", inputdata);
+            this.style.opacity = "0.5";
+        });
+        selectbutton.addEventListener("touchend", function() {
+            inputdata.selectbutton = false;
             channel.publish("inputdata", inputdata);
             this.style.opacity = "1";
         });
