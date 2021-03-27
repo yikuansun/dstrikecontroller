@@ -53,7 +53,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.dpad.up = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     upbutton.addEventListener("touchend", function() {
         inputdata.dpad.up = false;
@@ -68,7 +68,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.dpad.left = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     leftbutton.addEventListener("touchend", function() {
         inputdata.dpad.left = false;
@@ -83,7 +83,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.dpad.down = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     downbutton.addEventListener("touchend", function() {
         inputdata.dpad.down = false;
@@ -98,7 +98,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.dpad.right = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     rightbutton.addEventListener("touchend", function() {
         inputdata.dpad.right = false;
@@ -253,7 +253,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.elementpad.black = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     blackbutton.addEventListener("touchend", function() {
         inputdata.elementpad.black = false;
@@ -268,7 +268,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.elementpad.yellow = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     yellowbutton.addEventListener("touchend", function() {
         inputdata.elementpad.yellow = false;
@@ -283,7 +283,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.elementpad.blue = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     bluebutton.addEventListener("touchend", function() {
         inputdata.elementpad.blue = false;
@@ -298,7 +298,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.elementpad.red = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     redbutton.addEventListener("touchend", function() {
         inputdata.elementpad.red = false;
@@ -321,7 +321,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.menubutton = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     menubutton.addEventListener("touchend", function() {
         inputdata.menubutton = false;
@@ -344,7 +344,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         inputdata.selectbutton = true;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "0.5";
-        navigator.vibrate(100);
+        navigator.vibrate(50);
     });
     selectbutton.addEventListener("touchend", function() {
         inputdata.selectbutton = false;
