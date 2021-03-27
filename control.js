@@ -139,7 +139,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         }
         joy1initial = [e.clientX, e.clientY];
         joy1frame = 0;
-        navigator.vibrate(10);
+        navigator.vibrate(50);
     });
     draggable1.addEventListener("touchmove", function(e) {
         e.preventDefault();
@@ -206,7 +206,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         }
         joy2initial = [e.clientX, e.clientY];
         joy2frame = 0;
-        navigator.vibrate(10);
+        navigator.vibrate(50);
     });
     draggable2.addEventListener("touchmove", function(e) {
         e.preventDefault();
