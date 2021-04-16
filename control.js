@@ -352,3 +352,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
         this.style.opacity = "1";
     });
 });
+
+// Redraw elements if phone rotated
+window.addEventListener("orientationchange", function(e) {
+    location.reload();
+});
