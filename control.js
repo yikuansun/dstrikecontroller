@@ -20,6 +20,7 @@ var inputdata = {
         blue: false
     },
     menubutton: false,
+    xbutton: false,
     selectbutton: false
 };
 
@@ -311,8 +312,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
     menubutton.style.height = (10 * (window.innerHeight * 0.01)).toString() + "px";
     menubutton.style.position = "absolute";
     menubutton.style.transform = "translate(-50%, -50%)";
-    menubutton.style.top = (20 * (window.innerHeight * 0.01)).toString() + "px";
-    menubutton.style.left = "50vw";
+    menubutton.style.top = (15 * (window.innerHeight * 0.01)).toString() + "px";
+    menubutton.style.left = "40vw";
     menubutton.style.backgroundImage = "url(images/menu.png)";
     menubutton.style.backgroundSize = "100% 100%";
     cover.appendChild(menubutton);
@@ -325,6 +326,29 @@ navigator.geolocation.getCurrentPosition(function(position) {
     });
     menubutton.addEventListener("touchend", function() {
         inputdata.menubutton = false;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "1";
+    });
+
+    var xbutton = document.createElement("div");
+    xbutton.style.width = (10 * (window.innerHeight * 0.01)).toString() + "px";
+    xbutton.style.height = (10 * (window.innerHeight * 0.01)).toString() + "px";
+    xbutton.style.position = "absolute";
+    xbutton.style.transform = "translate(-50%, -50%)";
+    xbutton.style.top = (15 * (window.innerHeight * 0.01)).toString() + "px";
+    xbutton.style.left = "60vw";
+    xbutton.style.backgroundImage = "url(images/x.png)";
+    xbutton.style.backgroundSize = "100% 100%";
+    cover.appendChild(xbutton);
+    xbutton.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        inputdata.xbutton = true;
+        channel.publish("inputdata", inputdata);
+        this.style.opacity = "0.5";
+        navigator.vibrate(50);
+    });
+    xbutton.addEventListener("touchend", function() {
+        inputdata.xbutton = false;
         channel.publish("inputdata", inputdata);
         this.style.opacity = "1";
     });
@@ -351,6 +375,17 @@ navigator.geolocation.getCurrentPosition(function(position) {
         channel.publish("inputdata", inputdata);
         this.style.opacity = "1";
     });
+    
+    var logo = document.createElement("div");
+    logo.style.width = (15 * (window.innerHeight * 0.01)).toString() + "px";
+    logo.style.height = (15 * (window.innerHeight * 0.01)).toString() + "px";
+    logo.style.position = "absolute";
+    logo.style.transform = "translate(-50%, -50%)";
+    logo.style.top = (15 * (window.innerHeight * 0.01)).toString() + "px";
+    logo.style.left = "50vw";
+    logo.style.backgroundImage = "url(images/controllerlogo.png)";
+    logo.style.backgroundSize = "100% 100%";
+    cover.appendChild(logo);
 });
 
 // Redraw elements if phone rotated
