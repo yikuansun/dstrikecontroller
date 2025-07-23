@@ -1,6 +1,8 @@
 import * as skio from "sveltekit-io";
 import {browser} from "$app/environment";
 
+let sockets = {};
+
 skio.setup('http://localhost:3001', {
   cors: {
     origin     : "http://localhost:5173",
@@ -13,12 +15,13 @@ skio.setup('http://localhost:3001', {
 
   io.on('connect', socket => {
     console.log(socket.id, "connected");
+    sockets[socket.id] = socket;
 
     socket.on('input', message => {
-
-      console.log(socket.id, "Client sent:", message);
-
-      socket.emit('message', {message: 'Hello from server !'});
+        let clientSocket = sockets[message.id];
+        if ( clientSocket ) {
+            clientSocket.emit(`output`, message);
+        }
     });
   });
 });

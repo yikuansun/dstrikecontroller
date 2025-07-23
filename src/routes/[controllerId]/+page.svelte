@@ -24,6 +24,7 @@
      */
     function sendInput(button, state) {
         socket.emit(`input`, {
+            id: params.controllerId,
             button: button,
             state: state,
         });

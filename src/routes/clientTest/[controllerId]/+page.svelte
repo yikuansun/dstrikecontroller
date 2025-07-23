@@ -10,13 +10,17 @@
 
     onMount(() => {
         socket = skio.get();
-        socket.on(`c${params.controllerId}-input`, data => {
+        socket.on(`output`, data => {
             logs = [...logs, data];
         });
         console.log(socket)
     })
 </script>
 
-<pre>
-    {JSON.stringify(logs, null, 2)}
-</pre>
+{#if socket}
+    <pre>Socket ID: {socket.id}</pre>
+{/if}
+<pre>Logs:</pre>
+{#each logs as log}
+    <code>{JSON.stringify(log)}</code> <br />
+{/each}
