@@ -92,6 +92,7 @@
                 if (stickRight.distance > 0.75) {
                     stickRight.distance = 0.75;
                 }
+                sendInput("stickRight", stickRight);
             }} on:touchmove={(e) => {
                 let touch = e.changedTouches[0];
                 let cx = e.currentTarget.getBoundingClientRect().x + e.currentTarget.getBoundingClientRect().width / 2;
@@ -102,9 +103,11 @@
                 if (stickRight.distance > 0.75) {
                     stickRight.distance = 0.75;
                 }
+                sendInput("stickRight", stickRight);
             }} on:touchend={() => {
                 stickRight.angle = 0;
                 stickRight.distance = 0;
+                sendInput("stickRight", stickRight);
             }} />
         <circle cx={width - 200 + stickRight.distance * Math.cos(stickRight.angle) * 100} cy={height - 150 + stickRight.distance * Math.sin(stickRight.angle) * 100} r="80" fill="grey"
             style:pointer-events="none" />
