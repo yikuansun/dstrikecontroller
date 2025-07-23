@@ -1,7 +1,9 @@
 import { Server } from 'socket.io';
 
+/** @type {Record<string, import('socket.io').Socket>} */
 let sockets = {};
 
+/** @param {import('http').Server} server */
 export default function injectSocketIO(server) {
     const io = new Server(server);
 

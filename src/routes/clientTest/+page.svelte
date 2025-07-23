@@ -2,9 +2,7 @@
     import { onMount } from "svelte";
     import { io } from "$lib/webSocketConnection";
 
-    /** @type {{ controllerId: string }} */
-    export let params;
-
+    /** @type {Object[]} */
     let logs = [];
 
     /** @type {URL} */
@@ -14,7 +12,7 @@
     onMount(() => {
         io.on("connect", () => {
             console.log(io)
-            controllerId = io.id;
+            if (io.id) controllerId = io.id;
             io.on(`output`, data => {
                 logs = [...logs, data];
             });
