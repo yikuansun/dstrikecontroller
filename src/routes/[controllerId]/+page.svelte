@@ -1,4 +1,8 @@
 <script>
+    import { onMount } from "svelte";
+    import * as skio from "sveltekit-io";
+
+    /** @type {{ controllerId: string }} */
     export let params;
     let width = 960, height = 540;
 
@@ -10,6 +14,29 @@
         angle: 0,
         distance: 0,
     };
+
+    let socket;
+
+    /**
+     * Trigger input on websocket
+     * @param {string} button
+     * @param {boolean | Object} state
+     */
+    function sendInput(button, state) {
+        socket.emit(`input`, {
+            button: button,
+            state: state,
+        });
+    }
+
+    onMount(() => {
+        socket = skio.get();
+        socket.on('message', data => {
+            console.log(data);
+        });
+        socket.emit(`c${params.controllerId}-connected`);
+        console.log(socket);
+    })
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
@@ -31,6 +58,7 @@
                 if (stickLeft.distance > 0.75) {
                     stickLeft.distance = 0.75;
                 }
+                sendInput("stickLeft", stickLeft);
             }} on:touchmove={(e) => {
                 let touch = e.changedTouches[0];
                 let cx = e.currentTarget.getBoundingClientRect().x + e.currentTarget.getBoundingClientRect().width / 2;
@@ -41,9 +69,11 @@
                 if (stickLeft.distance > 0.75) {
                     stickLeft.distance = 0.75;
                 }
+                sendInput("stickLeft", stickLeft);
             }} on:touchend={() => {
                 stickLeft.angle = 0;
                 stickLeft.distance = 0;
+                sendInput("stickLeft", stickLeft);
             }} />
         <circle cx={200 + stickLeft.distance * Math.cos(stickLeft.angle) * 100} cy={height - 150 + stickLeft.distance * Math.sin(stickLeft.angle) * 100} r="80" fill="grey"
             style:pointer-events="none" />
