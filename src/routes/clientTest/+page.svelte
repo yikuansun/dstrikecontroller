@@ -1,28 +1,32 @@
 <script>
     import { onMount } from "svelte";
-    import * as skio from "sveltekit-io";
+    import { io } from "$lib/webSocketConnection";
 
     /** @type {{ controllerId: string }} */
     export let params;
 
-    let socket;
     let logs = [];
 
     /** @type {URL} */
     let controllerURL;
+    let controllerId = "";
 
     onMount(() => {
-        socket = skio.get();
-        socket.on(`output`, data => {
-            logs = [...logs, data];
-        });
-        console.log(socket)
-        controllerURL = new URL(`/${socket.id}`, location.origin);
+        io.on("connect", () => {
+            console.log(io)
+            controllerId = io.id;
+            io.on(`output`, data => {
+                logs = [...logs, data];
+            });
+            controllerURL = new URL(`/${controllerId}`, location.origin);
+
+        })
+        io.connect();
     })
 </script>
 
-{#if socket}
-    <pre>Socket ID: {socket.id}</pre>
+{#if controllerId}
+    <pre>Controller ID: {controllerId}</pre>
 {/if}
 
 {#if controllerURL}

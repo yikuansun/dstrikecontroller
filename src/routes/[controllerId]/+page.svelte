@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import * as skio from "sveltekit-io";
+    import { io } from "$lib/webSocketConnection";
 
     /** @type {{ controllerId: string }} */
     export let params;
@@ -15,15 +15,13 @@
         distance: 0,
     };
 
-    let socket;
-
     /**
      * Trigger input on websocket
      * @param {string} button
      * @param {boolean | Object} state
      */
     function sendInput(button, state) {
-        socket.emit(`input`, {
+        io.emit(`input`, {
             id: params.controllerId,
             button: button,
             state: state,
@@ -31,12 +29,9 @@
     }
 
     onMount(() => {
-        socket = skio.get();
-        socket.on('message', data => {
+        io.on('input', data => {
             console.log(data);
         });
-        socket.emit(`c${params.controllerId}-connected`);
-        console.log(socket);
     })
 </script>
 
