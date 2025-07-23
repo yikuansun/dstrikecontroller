@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import { goto } from "$app/navigation";
+
+    let controllerId = 0;
+</script>
+
+<label>
+    Controller ID:
+    <input type="number" bind:value={controllerId} />
+</label>
+<button on:click={() => {
+    goto("/" + controllerId);
+}}>Go</button>
