@@ -19,9 +19,12 @@
             io.on(`output`, data => {
                 logs = [...logs, data];
             });
-            controllerURL = new URL(`/${controllerId}`, location.origin);
+            controllerURL = new URL(`/controller/${controllerId}`, location.origin);
 
-        })
+        });
+        io.on("connect_error", err => {
+            console.log(err.message);
+        });
         io.connect();
     })
 </script>

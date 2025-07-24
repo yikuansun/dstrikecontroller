@@ -5,7 +5,7 @@
 
     let io = ioClient(page.url.origin);
 
-    /** @type {{ controllerId: string }} */
+    /** @type {{ id: string }} */
     export let params;
     let width = 960, height = 540;
 
@@ -25,7 +25,7 @@
      */
     function sendInput(button, state) {
         io.emit(`input`, {
-            id: params.controllerId,
+            id: params.id,
             button: button,
             state: state,
         });
@@ -41,7 +41,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
     <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="2" /> <!-- temporary -->
     <text x={width / 2} y="50" text-anchor="middle" alignment-baseline="middle" font-size="20" fill="grey">
-        Controller ID: {params.controllerId}
+        Controller ID: {params.id}
         <!-- prob temporary as well -->
     </text>
     <g>

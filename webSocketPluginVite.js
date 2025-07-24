@@ -4,5 +4,8 @@ export const webSocketServer = {
     name: 'webSocketServer',
     configureServer(server) {
         injectSocketIO(server.httpServer);
+    },
+    configurePreviewServer(server) {
+        injectSocketIO(server.httpServer);
     }
 };
