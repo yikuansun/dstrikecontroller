@@ -1,6 +1,9 @@
 <script>
     import { onMount } from "svelte";
-    import { io } from "$lib/webSocketConnection";
+    import ioClient from "socket.io-client";
+    import { page } from '$app/state';
+    
+    let io = ioClient(page.url.origin);
 
     /** @type {Object[]} */
     let logs = [];
