@@ -31,6 +31,10 @@
         delta: false,
     };
 
+    let menuButton = false;
+    let xButton = false;
+    let selectButton = false;
+
     /**
      * Trigger input on websocket
      * @param {string} button
@@ -298,6 +302,33 @@
             style:pointer-events="none" opacity={letterButtons.delta ? 0.5 : 1} />
         <text x={width - 150} y="210" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="steelblue"
             opacity={letterButtons.delta ? 0.5 : 1} style:pointer-events="none">δ</text>
+    </g>
+    <circle cx="350" cy="150" r="27" fill="transparent" stroke="grey" stroke-width="7"
+        on:touchstart={(e) => {
+            e.preventDefault();
+            menuButton = true;
+            sendInput("menuButton", true);
+        }} on:touchend={() => {
+            menuButton = false;
+            sendInput("menuButton", false);
+        }} opacity={menuButton ? 0.5 : 1} />
+    <g opacity={menuButton ? 0.5 : 1} style:pointer-events="none">
+        <line x1="340" y1="140" x2="360" y2="140" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="150" x2="360" y2="150" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="160" x2="360" y2="160" stroke="grey" stroke-width="5" stroke-linecap="round" />
+    </g>
+    <circle cx={width - 350} cy="150" r="27" fill="transparent" stroke="grey" stroke-width="7"
+        on:touchstart={(e) => {
+            e.preventDefault();
+            xButton = true;
+            sendInput("xButton", true);
+        }} on:touchend={() => {
+            xButton = false;
+            sendInput("xButton", false);
+        }} opacity={xButton ? 0.5 : 1} />
+    <g opacity={xButton ? 0.5 : 1} style:pointer-events="none">
+        <line x1={width - 340} y1="140" x2={width - 360} y2="160" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1={width - 340} y1="160" x2={width - 360} y2="140" stroke="grey" stroke-width="5" stroke-linecap="round" />
     </g>
 </svg>
 
