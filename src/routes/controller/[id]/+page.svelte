@@ -38,6 +38,20 @@
     let xButton = false;
     let selectButton = false;
 
+    let colorScheme = {
+        background: "#272727",
+        stickLeft:  "#888888",
+        stickRight: "#888888",
+        dPad: "#888888",
+        alphaButton: "#00DD44",
+        betaButton: "#EECC00",
+        gammaButton: "#EE4466",
+        deltaButton: "#00AADD",
+        menuButton: "#888888",
+        xButton: "#888888",
+        selectButton: "#888888",
+    };
+
     /**
      * Trigger input on websocket
      * @param {string} button
@@ -58,11 +72,12 @@
     })
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"
+    style:background-color={colorScheme.background}>
     <rect width="100%" height="100%" fill="transparent"
         on:touchstart={(e) => e.preventDefault()} />
     <g>
-        <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
+        <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke={colorScheme.stickLeft} stroke-width="10"
             on:touchstart={(e) => {
                 e.preventDefault();
                 haptic();
@@ -95,11 +110,11 @@
                 stickLeft.moving = false;
                 sendInput("stickLeft", stickLeft);
             }} />
-        <circle cx={250 + stickLeft.distance * Math.cos(stickLeft.angle) * 100} cy={height - 150 + stickLeft.distance * Math.sin(stickLeft.angle) * 100} r="80" fill="grey"
+        <circle cx={250 + stickLeft.distance * Math.cos(stickLeft.angle) * 100} cy={height - 150 + stickLeft.distance * Math.sin(stickLeft.angle) * 100} r="80" fill={colorScheme.stickLeft}
             style:pointer-events="none" />
     </g>
     <g>
-        <circle cx={width - 250} cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
+        <circle cx={width - 250} cy={height - 150} r="100" fill="transparent" stroke={colorScheme.stickRight} stroke-width="10"
             on:touchstart={(e) => {
                 e.preventDefault();
                 let touch = e.changedTouches[0];
@@ -132,7 +147,7 @@
                 stickRight.moving = false;
                 sendInput("stickRight", stickRight);
             }} />
-        <circle cx={width - 250 + stickRight.distance * Math.cos(stickRight.angle) * 100} cy={height - 150 + stickRight.distance * Math.sin(stickRight.angle) * 100} r="80" fill="grey"
+        <circle cx={width - 250 + stickRight.distance * Math.cos(stickRight.angle) * 100} cy={height - 150 + stickRight.distance * Math.sin(stickRight.angle) * 100} r="80" fill={colorScheme.stickRight}
             style:pointer-events="none" />
     </g>
     <g>
@@ -250,13 +265,13 @@
                 if (!dPad.left && before.left) sendInput("dPadLeft", false);
                 if (!dPad.right && before.right) sendInput("dPadRight", false);
             }} />
-        <polygon points="150,130 160,120 160,60 140,60 140,120" fill="grey" style:pointer-events="none" stroke="grey" stroke-width="17" stroke-linejoin="round"
+        <polygon points="150,130 160,120 160,60 140,60 140,120" fill={colorScheme.dPad} style:pointer-events="none" stroke={colorScheme.dPad} stroke-width="17" stroke-linejoin="round"
             opacity={dPad.up ? 0.5 : 1} />
-        <polygon points="130,150 120,160 60,160 60,140 120,140" fill="grey" style:pointer-events="none" stroke="grey" stroke-width="17" stroke-linejoin="round"
+        <polygon points="130,150 120,160 60,160 60,140 120,140" fill={colorScheme.dPad} style:pointer-events="none" stroke={colorScheme.dPad} stroke-width="17" stroke-linejoin="round"
             opacity={dPad.left ? 0.5 : 1}/>
-        <polygon points="150,170 160,180 160,240 140,240 140,180" fill="grey" style:pointer-events="none" stroke="grey" stroke-width="17" stroke-linejoin="round"
+        <polygon points="150,170 160,180 160,240 140,240 140,180" fill={colorScheme.dPad} style:pointer-events="none" stroke={colorScheme.dPad} stroke-width="17" stroke-linejoin="round"
             opacity={dPad.down ? 0.5 : 1} />
-        <polygon points="170,150 180,160 240,160 240,140 180,140" fill="grey" style:pointer-events="none" stroke="grey" stroke-width="17" stroke-linejoin="round"
+        <polygon points="170,150 180,160 240,160 240,140 180,140" fill={colorScheme.dPad} style:pointer-events="none" stroke={colorScheme.dPad} stroke-width="17" stroke-linejoin="round"
             opacity={dPad.right ? 0.5 : 1} />
     </g>
     <g>
@@ -342,24 +357,24 @@
                 if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
                 if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
             }} />
-        <circle cx={width - 150} cy="90" r="25" fill="lightgreen" stroke="limegreen" stroke-width="5"
+        <circle cx={width - 150} cy="90" r="25" fill={colorScheme.alphaButton} stroke={colorScheme.alphaButton} stroke-width="5" fill-opacity="0.5"
             style:pointer-events="none" opacity={letterButtons.alpha ? 0.5 : 1} />
-        <text x={width - 150} y="90" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="limegreen"
+        <text x={width - 150} y="90" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill={colorScheme.alphaButton}
             opacity={letterButtons.alpha ? 0.5 : 1} style:pointer-events="none">α</text>
-        <circle cx={width - 90} cy="150" r="25" fill="lightyellow" stroke="gold" stroke-width="5"
+        <circle cx={width - 90} cy="150" r="25" fill={colorScheme.betaButton} stroke={colorScheme.betaButton} stroke-width="5" fill-opacity="0.5"
             style:pointer-events="none" opacity={letterButtons.beta ? 0.5 : 1} />
-        <text x={width - 90} y="150" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="gold"
+        <text x={width - 90} y="150" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill={colorScheme.betaButton}
             opacity={letterButtons.beta ? 0.5 : 1} style:pointer-events="none">β</text>
-        <circle cx={width - 210} cy="150" r="25" fill="pink" stroke="indianred" stroke-width="5"
+        <circle cx={width - 210} cy="150" r="25" fill={colorScheme.gammaButton} stroke={colorScheme.gammaButton} stroke-width="5" fill-opacity="0.5"
             style:pointer-events="none" opacity={letterButtons.gamma ? 0.5 : 1} />
-        <text x={width - 210} y="150" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="indianred"
+        <text x={width - 210} y="150" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill={colorScheme.gammaButton}
             opacity={letterButtons.gamma ? 0.5 : 1} style:pointer-events="none">γ</text>
-        <circle cx={width - 150} cy="210" r="25" fill="lightblue" stroke="steelblue" stroke-width="5"
+        <circle cx={width - 150} cy="210" r="25" fill={colorScheme.deltaButton} stroke={colorScheme.deltaButton} stroke-width="5" fill-opacity="0.5"
             style:pointer-events="none" opacity={letterButtons.delta ? 0.5 : 1} />
-        <text x={width - 150} y="210" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="steelblue"
+        <text x={width - 150} y="210" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill={colorScheme.deltaButton}
             opacity={letterButtons.delta ? 0.5 : 1} style:pointer-events="none">δ</text>
     </g>
-    <circle cx="350" cy="100" r="27" fill="transparent" stroke="grey" stroke-width="7"
+    <circle cx="350" cy="100" r="27" fill="transparent" stroke={colorScheme.menuButton} stroke-width="7"
         on:touchstart={(e) => {
             e.preventDefault();
             menuButton = true;
@@ -370,11 +385,11 @@
             sendInput("menuButton", false);
         }} opacity={menuButton ? 0.5 : 1} />
     <g opacity={menuButton ? 0.5 : 1} style:pointer-events="none">
-        <line x1="340" y1="90" x2="360" y2="90" stroke="grey" stroke-width="5" stroke-linecap="round" />
-        <line x1="340" y1="100" x2="360" y2="100" stroke="grey" stroke-width="5" stroke-linecap="round" />
-        <line x1="340" y1="110" x2="360" y2="110" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="90" x2="360" y2="90" stroke={colorScheme.menuButton} stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="100" x2="360" y2="100" stroke={colorScheme.menuButton} stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="110" x2="360" y2="110" stroke={colorScheme.menuButton} stroke-width="5" stroke-linecap="round" />
     </g>
-    <circle cx={width - 350} cy="100" r="27" fill="transparent" stroke="grey" stroke-width="7"
+    <circle cx={width - 350} cy="100" r="27" fill="transparent" stroke={colorScheme.xButton} stroke-width="7"
         on:touchstart={(e) => {
             e.preventDefault();
             xButton = true;
@@ -385,10 +400,10 @@
             sendInput("xButton", false);
         }} opacity={xButton ? 0.5 : 1} />
     <g opacity={xButton ? 0.5 : 1} style:pointer-events="none">
-        <line x1={width - 340} y1="90" x2={width - 360} y2="110" stroke="grey" stroke-width="5" stroke-linecap="round" />
-        <line x1={width - 340} y1="110" x2={width - 360} y2="90" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1={width - 340} y1="90" x2={width - 360} y2="110" stroke={colorScheme.xButton} stroke-width="5" stroke-linecap="round" />
+        <line x1={width - 340} y1="110" x2={width - 360} y2="90" stroke={colorScheme.xButton} stroke-width="5" stroke-linecap="round" />
     </g>
-    <rect x={width / 2 - 70} y="160" width="140" height="32" fill="transparent" stroke="grey" stroke-width="7" rx="16"
+    <rect x={width / 2 - 70} y="160" width="140" height="32" fill="transparent" stroke={colorScheme.selectButton} stroke-width="7" rx="16"
         on:touchstart={(e) => {
             e.preventDefault();
             selectButton = true;
@@ -398,7 +413,7 @@
             selectButton = false;
             sendInput("selectButton", false);
         }} opacity={selectButton ? 0.5 : 1} />
-    <text x={width / 2} y="178" text-anchor="middle" alignment-baseline="middle" font-size="20" font-weight="bold" fill="grey"
+    <text x={width / 2} y="178" text-anchor="middle" alignment-baseline="middle" font-size="20" font-weight="bold" fill={colorScheme.selectButton}
         style:pointer-events="none" opacity={selectButton ? 0.5 : 1}>SELECT</text>
 </svg>
 
