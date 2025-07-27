@@ -52,7 +52,7 @@
         <!-- prob temporary as well -->
     </text>
     <g>
-        <circle cx="200" cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
+        <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
             on:touchstart={(e) => {
                 e.preventDefault();
                 let touch = e.changedTouches[0];
@@ -81,11 +81,11 @@
                 stickLeft.distance = 0;
                 sendInput("stickLeft", stickLeft);
             }} />
-        <circle cx={200 + stickLeft.distance * Math.cos(stickLeft.angle) * 100} cy={height - 150 + stickLeft.distance * Math.sin(stickLeft.angle) * 100} r="80" fill="grey"
+        <circle cx={250 + stickLeft.distance * Math.cos(stickLeft.angle) * 100} cy={height - 150 + stickLeft.distance * Math.sin(stickLeft.angle) * 100} r="80" fill="grey"
             style:pointer-events="none" />
     </g>
     <g>
-        <circle cx={width - 200} cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
+        <circle cx={width - 250} cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
             on:touchstart={(e) => {
                 e.preventDefault();
                 let touch = e.changedTouches[0];
@@ -114,7 +114,7 @@
                 stickRight.distance = 0;
                 sendInput("stickRight", stickRight);
             }} />
-        <circle cx={width - 200 + stickRight.distance * Math.cos(stickRight.angle) * 100} cy={height - 150 + stickRight.distance * Math.sin(stickRight.angle) * 100} r="80" fill="grey"
+        <circle cx={width - 250 + stickRight.distance * Math.cos(stickRight.angle) * 100} cy={height - 150 + stickRight.distance * Math.sin(stickRight.angle) * 100} r="80" fill="grey"
             style:pointer-events="none" />
     </g>
     <g>
