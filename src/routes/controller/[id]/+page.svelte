@@ -292,25 +292,25 @@
                 if (touch.clientY > cy + r * 0.4) letterButtons.delta = true;
                 else letterButtons.delta = false;
                 if (letterButtons.alpha && !before.alpha) {
-                    sendInput("alphaButton", true);
+                    sendInput("alpha", true);
                     haptic();
                 }
                 if (letterButtons.beta && !before.beta) {
-                    sendInput("betaButton", true);
+                    sendInput("beta", true);
                     haptic();
                 }
                 if (letterButtons.gamma && !before.gamma) {
-                    sendInput("gammaButton", true);
+                    sendInput("gamma", true);
                     haptic();
                 }
                 if (letterButtons.delta && !before.delta) {
-                    sendInput("deltaButton", true);
+                    sendInput("delta", true);
                     haptic();
                 }
-                if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
-                if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
-                if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
-                if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
+                if (!letterButtons.alpha && before.alpha) sendInput("alpha", false);
+                if (!letterButtons.beta && before.beta) sendInput("beta", false);
+                if (!letterButtons.gamma && before.gamma) sendInput("gamma", false);
+                if (!letterButtons.delta && before.delta) sendInput("delta", false);
             }} on:touchmove={(e) => {
                 e.preventDefault();
                 let r = e.currentTarget.getBoundingClientRect().width / 2;
@@ -327,35 +327,35 @@
                 if (touch.clientY > cy + r * 0.4) letterButtons.delta = true;
                 else letterButtons.delta = false;
                 if (letterButtons.alpha && !before.alpha) {
-                    sendInput("alphaButton", true);
+                    sendInput("alpha", true);
                     haptic();
                 }
                 if (letterButtons.beta && !before.beta) {
-                    sendInput("betaButton", true);
+                    sendInput("beta", true);
                     haptic();
                 }
                 if (letterButtons.gamma && !before.gamma) {
-                    sendInput("gammaButton", true);
+                    sendInput("gamma", true);
                     haptic();
                 }
                 if (letterButtons.delta && !before.delta) {
-                    sendInput("deltaButton", true);
+                    sendInput("delta", true);
                     haptic();
                 }
-                if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
-                if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
-                if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
-                if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
+                if (!letterButtons.alpha && before.alpha) sendInput("alpha", false);
+                if (!letterButtons.beta && before.beta) sendInput("beta", false);
+                if (!letterButtons.gamma && before.gamma) sendInput("gamma", false);
+                if (!letterButtons.delta && before.delta) sendInput("delta", false);
             }} on:touchend={() => {
                 let before = Object.assign({}, letterButtons);
                 letterButtons.alpha = false;
                 letterButtons.beta = false;
                 letterButtons.gamma = false;
                 letterButtons.delta = false;
-                if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
-                if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
-                if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
-                if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
+                if (!letterButtons.alpha && before.alpha) sendInput("alpha", false);
+                if (!letterButtons.beta && before.beta) sendInput("beta", false);
+                if (!letterButtons.gamma && before.gamma) sendInput("gamma", false);
+                if (!letterButtons.delta && before.delta) sendInput("delta", false);
             }} />
         <circle cx={width - 150} cy="90" r="25" fill={colorScheme.alphaButton} stroke={colorScheme.alphaButton} stroke-width="5" fill-opacity="0.5"
             style:pointer-events="none" opacity={letterButtons.alpha ? 0.5 : 1} />
@@ -378,11 +378,11 @@
         on:touchstart={(e) => {
             e.preventDefault();
             menuButton = true;
-            sendInput("menuButton", true);
+            sendInput("menu", true);
             haptic();
         }} on:touchend={() => {
             menuButton = false;
-            sendInput("menuButton", false);
+            sendInput("menu", false);
         }} opacity={menuButton ? 0.5 : 1} />
     <g opacity={menuButton ? 0.5 : 1} style:pointer-events="none">
         <line x1="340" y1="90" x2="360" y2="90" stroke={colorScheme.menuButton} stroke-width="5" stroke-linecap="round" />
@@ -393,11 +393,11 @@
         on:touchstart={(e) => {
             e.preventDefault();
             xButton = true;
-            sendInput("xButton", true);
+            sendInput("x", true);
             haptic();
         }} on:touchend={() => {
             xButton = false;
-            sendInput("xButton", false);
+            sendInput("x", false);
         }} opacity={xButton ? 0.5 : 1} />
     <g opacity={xButton ? 0.5 : 1} style:pointer-events="none">
         <line x1={width - 340} y1="90" x2={width - 360} y2="110" stroke={colorScheme.xButton} stroke-width="5" stroke-linecap="round" />
@@ -407,11 +407,11 @@
         on:touchstart={(e) => {
             e.preventDefault();
             selectButton = true;
-            sendInput("selectButton", true);
+            sendInput("select", true);
             haptic();
         }} on:touchend={() => {
             selectButton = false;
-            sendInput("selectButton", false);
+            sendInput("select", false);
         }} opacity={selectButton ? 0.5 : 1} />
     <text x={width / 2} y="178" text-anchor="middle" alignment-baseline="middle" font-size="20" font-weight="bold" fill={colorScheme.selectButton}
         style:pointer-events="none" opacity={selectButton ? 0.5 : 1}>SELECT</text>
