@@ -24,6 +24,12 @@
         left: false,
         right: false,
     };
+    let letterButtons = {
+        alpha: false,
+        beta: false,
+        gamma: false,
+        delta: false,
+    };
 
     /**
      * Trigger input on websocket
@@ -216,6 +222,82 @@
             opacity={dPad.down ? 0.5 : 1} />
         <polygon points="170,150 180,160 240,160 240,140 180,140" fill="grey" style:pointer-events="none" stroke="grey" stroke-width="17" stroke-linejoin="round"
             opacity={dPad.right ? 0.5 : 1} />
+    </g>
+    <g>
+        <circle cx={width - 150} cy="150" r="100" fill="transparent" stroke="grey"
+            on:touchstart={(e) => {
+                e.preventDefault();
+                let r = e.currentTarget.getBoundingClientRect().width / 2;
+                let cx = e.currentTarget.getBoundingClientRect().x + r;
+                let cy = e.currentTarget.getBoundingClientRect().y + r;
+                let touch = e.changedTouches[0];
+                let before = Object.assign({}, letterButtons);
+                if (touch.clientY < cy - r * 0.4) letterButtons.alpha = true;
+                else letterButtons.alpha = false;
+                if (touch.clientX > cx + r * 0.4) letterButtons.beta = true;
+                else letterButtons.beta = false;
+                if (touch.clientX < cx - r * 0.4) letterButtons.gamma = true;
+                else letterButtons.gamma = false;
+                if (touch.clientY > cy + r * 0.4) letterButtons.delta = true;
+                else letterButtons.delta = false;
+                if (letterButtons.alpha && !before.alpha) sendInput("alphaButton", true);
+                if (letterButtons.beta && !before.beta) sendInput("betaButton", true);
+                if (letterButtons.gamma && !before.gamma) sendInput("gammaButton", true);
+                if (letterButtons.delta && !before.delta) sendInput("deltaButton", true);
+                if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
+                if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
+                if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
+                if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
+            }} on:touchmove={(e) => {
+                e.preventDefault();
+                let r = e.currentTarget.getBoundingClientRect().width / 2;
+                let cx = e.currentTarget.getBoundingClientRect().x + r;
+                let cy = e.currentTarget.getBoundingClientRect().y + r;
+                let touch = e.changedTouches[0];
+                let before = Object.assign({}, letterButtons);
+                if (touch.clientY < cy - r * 0.4) letterButtons.alpha = true;
+                else letterButtons.alpha = false;
+                if (touch.clientX > cx + r * 0.4) letterButtons.beta = true;
+                else letterButtons.beta = false;
+                if (touch.clientX < cx - r * 0.4) letterButtons.gamma = true;
+                else letterButtons.gamma = false;
+                if (touch.clientY > cy + r * 0.4) letterButtons.delta = true;
+                else letterButtons.delta = false;
+                if (letterButtons.alpha && !before.alpha) sendInput("alphaButton", true);
+                if (letterButtons.beta && !before.beta) sendInput("betaButton", true);
+                if (letterButtons.gamma && !before.gamma) sendInput("gammaButton", true);
+                if (letterButtons.delta && !before.delta) sendInput("deltaButton", true);
+                if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
+                if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
+                if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
+                if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
+            }} on:touchend={() => {
+                let before = Object.assign({}, letterButtons);
+                letterButtons.alpha = false;
+                letterButtons.beta = false;
+                letterButtons.gamma = false;
+                letterButtons.delta = false;
+                if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
+                if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
+                if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
+                if (!letterButtons.delta && before.delta) sendInput("deltaButton", false);
+            }} />
+        <circle cx={width - 150} cy="90" r="25" fill="lightgreen" stroke="limegreen" stroke-width="5"
+            style:pointer-events="none" opacity={letterButtons.alpha ? 0.5 : 1} />
+        <text x={width - 150} y="90" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="limegreen"
+            opacity={letterButtons.alpha ? 0.5 : 1} style:pointer-events="none">α</text>
+        <circle cx={width - 90} cy="150" r="25" fill="lightyellow" stroke="gold" stroke-width="5"
+            style:pointer-events="none" opacity={letterButtons.beta ? 0.5 : 1} />
+        <text x={width - 90} y="150" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="gold"
+            opacity={letterButtons.beta ? 0.5 : 1} style:pointer-events="none">β</text>
+        <circle cx={width - 210} cy="150" r="25" fill="pink" stroke="indianred" stroke-width="5"
+            style:pointer-events="none" opacity={letterButtons.gamma ? 0.5 : 1} />
+        <text x={width - 210} y="150" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="indianred"
+            opacity={letterButtons.gamma ? 0.5 : 1} style:pointer-events="none">γ</text>
+        <circle cx={width - 150} cy="210" r="25" fill="lightblue" stroke="steelblue" stroke-width="5"
+            style:pointer-events="none" opacity={letterButtons.delta ? 0.5 : 1} />
+        <text x={width - 150} y="210" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="steelblue"
+            opacity={letterButtons.delta ? 0.5 : 1} style:pointer-events="none">δ</text>
     </g>
 </svg>
 
