@@ -3,6 +3,9 @@
     import ioClient from "socket.io-client";
     import { page } from '$app/state';
     import { haptic } from "ios-haptics";
+    
+    import iconLight from "$lib/assets/images/icon-light.png";
+    import iconDark from "$lib/assets/images/icon-dark.png";
 
     let io = ioClient(page.url.origin);
 
@@ -50,6 +53,7 @@
         menuButton: "#888888",
         xButton: "#888888",
         selectButton: "#888888",
+        icon: "light",
     };
 
     /**
@@ -415,6 +419,8 @@
         }} opacity={selectButton ? 0.5 : 1} />
     <text x={width / 2} y="178" text-anchor="middle" alignment-baseline="middle" font-size="20" font-weight="bold" fill={colorScheme.selectButton}
         style:pointer-events="none" opacity={selectButton ? 0.5 : 1}>SELECT</text>
+    <image href={colorScheme.icon === "light" ? iconLight : iconDark} x={width / 2 - 50} y="25" width="100" height="100"
+        style:pointer-events="none" />
 </svg>
 
 <style>
