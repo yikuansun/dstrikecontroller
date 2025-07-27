@@ -224,7 +224,7 @@
             opacity={dPad.right ? 0.5 : 1} />
     </g>
     <g>
-        <circle cx={width - 150} cy="150" r="100" fill="transparent" stroke="grey"
+        <circle cx={width - 150} cy="150" r="100" fill="transparent"
             on:touchstart={(e) => {
                 e.preventDefault();
                 let r = e.currentTarget.getBoundingClientRect().width / 2;
