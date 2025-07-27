@@ -15,6 +15,22 @@
     /** @type {HTMLDivElement} */
     let logBook;
 
+    let controllerState = {
+        alpha: false,
+        beta: false,
+        gamma: false,
+        delta: false,
+        dPadUp: false,
+        dPadDown: false,
+        dPadLeft: false,
+        dPadRight: false,
+        menu: false,
+        x: false,
+        select: false,
+        stickLeft: { angle: 0, distance: 0, moving: false },
+        stickRight: { angle: 0, distance: 0, moving: false },
+    }
+
     onMount(() => {
         io.on("connect", () => {
             console.log(io)
@@ -24,6 +40,20 @@
                 setTimeout(() => {
                     logBook.scrollTop = logBook.scrollHeight;
                 }, 7);
+
+                if (data.button == "alpha") controllerState.alpha = data.state;
+                else if (data.button == "beta") controllerState.beta = data.state;
+                else if (data.button == "gamma") controllerState.gamma = data.state;
+                else if (data.button == "delta") controllerState.delta = data.state;
+                else if (data.button == "menu") controllerState.menu = data.state;
+                else if (data.button == "x") controllerState.x = data.state;
+                else if (data.button == "select") controllerState.select = data.state;
+                else if (data.button == "stickLeft") controllerState.stickLeft = data.state;
+                else if (data.button == "stickRight") controllerState.stickRight = data.state;
+                else if (data.button == "dPadUp") controllerState.dPadUp = data.state;
+                else if (data.button == "dPadDown") controllerState.dPadDown = data.state;
+                else if (data.button == "dPadLeft") controllerState.dPadLeft = data.state;
+                else if (data.button == "dPadRight") controllerState.dPadRight = data.state;
             });
             controllerURL = new URL(`/controller/${controllerId}`, location.origin);
 
@@ -45,6 +75,9 @@
     <br />
     <a href={controllerURL.toString()} target="_blank">{controllerURL.toString()}</a>
 {/if}
+<br /> <br />
+<b>State:</b>
+<pre>{JSON.stringify(controllerState, null, 4)}</pre>
 <br /> <br />
 <div style:width="800px" style:height="400px" style:overflow-y="scroll" bind:this={logBook}>
     <div style:background-color="white" style:position="sticky" style:top="0" style:font-weight="bold">Logs:</div>
