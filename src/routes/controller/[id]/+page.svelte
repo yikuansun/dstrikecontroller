@@ -56,11 +56,8 @@
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-    <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="2" /> <!-- temporary -->
-    <text x={width / 2} y="50" text-anchor="middle" alignment-baseline="middle" font-size="20" fill="grey">
-        Controller ID: {params.id}
-        <!-- prob temporary as well -->
-    </text>
+    <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="2"
+        on:touchstart={(e) => e.preventDefault()} />
     <g>
         <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
             on:touchstart={(e) => {
@@ -303,7 +300,7 @@
         <text x={width - 150} y="210" text-anchor="middle" alignment-baseline="middle" font-size="32" font-weight="bold" fill="steelblue"
             opacity={letterButtons.delta ? 0.5 : 1} style:pointer-events="none">δ</text>
     </g>
-    <circle cx="350" cy="150" r="27" fill="transparent" stroke="grey" stroke-width="7"
+    <circle cx="350" cy="100" r="27" fill="transparent" stroke="grey" stroke-width="7"
         on:touchstart={(e) => {
             e.preventDefault();
             menuButton = true;
@@ -313,11 +310,11 @@
             sendInput("menuButton", false);
         }} opacity={menuButton ? 0.5 : 1} />
     <g opacity={menuButton ? 0.5 : 1} style:pointer-events="none">
-        <line x1="340" y1="140" x2="360" y2="140" stroke="grey" stroke-width="5" stroke-linecap="round" />
-        <line x1="340" y1="150" x2="360" y2="150" stroke="grey" stroke-width="5" stroke-linecap="round" />
-        <line x1="340" y1="160" x2="360" y2="160" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="90" x2="360" y2="90" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="100" x2="360" y2="100" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1="340" y1="110" x2="360" y2="110" stroke="grey" stroke-width="5" stroke-linecap="round" />
     </g>
-    <circle cx={width - 350} cy="150" r="27" fill="transparent" stroke="grey" stroke-width="7"
+    <circle cx={width - 350} cy="100" r="27" fill="transparent" stroke="grey" stroke-width="7"
         on:touchstart={(e) => {
             e.preventDefault();
             xButton = true;
@@ -327,9 +324,20 @@
             sendInput("xButton", false);
         }} opacity={xButton ? 0.5 : 1} />
     <g opacity={xButton ? 0.5 : 1} style:pointer-events="none">
-        <line x1={width - 340} y1="140" x2={width - 360} y2="160" stroke="grey" stroke-width="5" stroke-linecap="round" />
-        <line x1={width - 340} y1="160" x2={width - 360} y2="140" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1={width - 340} y1="90" x2={width - 360} y2="110" stroke="grey" stroke-width="5" stroke-linecap="round" />
+        <line x1={width - 340} y1="110" x2={width - 360} y2="90" stroke="grey" stroke-width="5" stroke-linecap="round" />
     </g>
+    <rect x={width / 2 - 70} y="160" width="140" height="32" fill="transparent" stroke="grey" stroke-width="7" rx="16"
+        on:touchstart={(e) => {
+            e.preventDefault();
+            selectButton = true;
+            sendInput("selectButton", true);
+        }} on:touchend={() => {
+            selectButton = false;
+            sendInput("selectButton", false);
+        }} opacity={selectButton ? 0.5 : 1} />
+    <text x={width / 2} y="178" text-anchor="middle" alignment-baseline="middle" font-size="20" font-weight="bold" fill="grey"
+        style:pointer-events="none" opacity={selectButton ? 0.5 : 1}>SELECT</text>
 </svg>
 
 <style>
