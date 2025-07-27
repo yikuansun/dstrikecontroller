@@ -12,10 +12,12 @@
     let stickLeft = {
         angle: 0,
         distance: 0,
+        moving: false,
     };
     let stickRight = {
         angle: 0,
         distance: 0,
+        moving: false,
     };
 
     let dPad = {
@@ -71,6 +73,7 @@
                 if (stickLeft.distance > 0.75) {
                     stickLeft.distance = 0.75;
                 }
+                stickLeft.moving = false;
                 sendInput("stickLeft", stickLeft);
             }} on:touchmove={(e) => {
                 let touch = e.changedTouches[0];
@@ -82,10 +85,12 @@
                 if (stickLeft.distance > 0.75) {
                     stickLeft.distance = 0.75;
                 }
+                stickLeft.moving = true;
                 sendInput("stickLeft", stickLeft);
             }} on:touchend={() => {
                 stickLeft.angle = 0;
                 stickLeft.distance = 0;
+                stickLeft.moving = false;
                 sendInput("stickLeft", stickLeft);
             }} />
         <circle cx={250 + stickLeft.distance * Math.cos(stickLeft.angle) * 100} cy={height - 150 + stickLeft.distance * Math.sin(stickLeft.angle) * 100} r="80" fill="grey"
@@ -104,6 +109,7 @@
                 if (stickRight.distance > 0.75) {
                     stickRight.distance = 0.75;
                 }
+                stickRight.moving = false;
                 sendInput("stickRight", stickRight);
             }} on:touchmove={(e) => {
                 let touch = e.changedTouches[0];
@@ -115,10 +121,12 @@
                 if (stickRight.distance > 0.75) {
                     stickRight.distance = 0.75;
                 }
+                stickRight.moving = true;
                 sendInput("stickRight", stickRight);
             }} on:touchend={() => {
                 stickRight.angle = 0;
                 stickRight.distance = 0;
+                stickRight.moving = false;
                 sendInput("stickRight", stickRight);
             }} />
         <circle cx={width - 250 + stickRight.distance * Math.cos(stickRight.angle) * 100} cy={height - 150 + stickRight.distance * Math.sin(stickRight.angle) * 100} r="80" fill="grey"
