@@ -58,7 +58,7 @@
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-    <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="2"
+    <rect width="100%" height="100%" fill="transparent"
         on:touchstart={(e) => e.preventDefault()} />
     <g>
         <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
