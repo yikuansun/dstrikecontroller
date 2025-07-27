@@ -27,6 +27,7 @@
 	"dependencies": {
 		"@sveltejs/adapter-node": "^5.2.13",
 		"express": "^5.1.0",
+		"ios-haptics": "^0.0.9",
 		"socket.io": "^4.8.1",
 		"socket.io-client": "^4.8.1"
 	}

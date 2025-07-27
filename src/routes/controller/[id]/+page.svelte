@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import ioClient from "socket.io-client";
     import { page } from '$app/state';
+    import { haptic } from "ios-haptics";
 
     let io = ioClient(page.url.origin);
 
@@ -64,6 +65,7 @@
         <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke="grey" stroke-width="10"
             on:touchstart={(e) => {
                 e.preventDefault();
+                haptic();
                 let touch = e.changedTouches[0];
                 let cx = e.currentTarget.getBoundingClientRect().x + e.currentTarget.getBoundingClientRect().width / 2;
                 let cy = e.currentTarget.getBoundingClientRect().y + e.currentTarget.getBoundingClientRect().height / 2;
@@ -111,6 +113,7 @@
                 }
                 stickRight.moving = false;
                 sendInput("stickRight", stickRight);
+                haptic();
             }} on:touchmove={(e) => {
                 let touch = e.changedTouches[0];
                 let cx = e.currentTarget.getBoundingClientRect().x + e.currentTarget.getBoundingClientRect().width / 2;
@@ -165,10 +168,22 @@
                     dPad.right = false;
                     dPad.left = false;
                 }
-                if (dPad.up && !before.up) sendInput("dPadUp", true);
-                if (dPad.down && !before.down) sendInput("dPadDown", true);
-                if (dPad.left && !before.left) sendInput("dPadLeft", true);
-                if (dPad.right && !before.right) sendInput("dPadRight", true);
+                if (dPad.up && !before.up) {
+                    sendInput("dPadUp", true);
+                    haptic();
+                }
+                if (dPad.down && !before.down) {
+                    sendInput("dPadDown", true);
+                    haptic();
+                }
+                if (dPad.left && !before.left) {
+                    sendInput("dPadLeft", true);
+                    haptic();
+                }
+                if (dPad.right && !before.right) {
+                    sendInput("dPadRight", true);
+                    haptic();
+                }
                 if (!dPad.up && before.up) sendInput("dPadUp", false);
                 if (!dPad.down && before.down) sendInput("dPadDown", false);
                 if (!dPad.left && before.left) sendInput("dPadLeft", false);
@@ -204,10 +219,22 @@
                     dPad.right = false;
                     dPad.left = false;
                 }
-                if (dPad.up && !before.up) sendInput("dPadUp", true);
-                if (dPad.down && !before.down) sendInput("dPadDown", true);
-                if (dPad.left && !before.left) sendInput("dPadLeft", true);
-                if (dPad.right && !before.right) sendInput("dPadRight", true);
+                if (dPad.up && !before.up) {
+                    sendInput("dPadUp", true);
+                    haptic();
+                }
+                if (dPad.down && !before.down) {
+                    sendInput("dPadDown", true);
+                    haptic();
+                }
+                if (dPad.left && !before.left) {
+                    sendInput("dPadLeft", true);
+                    haptic();
+                }
+                if (dPad.right && !before.right) {
+                    sendInput("dPadRight", true);
+                    haptic();
+                }
                 if (!dPad.up && before.up) sendInput("dPadUp", false);
                 if (!dPad.down && before.down) sendInput("dPadDown", false);
                 if (!dPad.left && before.left) sendInput("dPadLeft", false);
@@ -249,10 +276,22 @@
                 else letterButtons.gamma = false;
                 if (touch.clientY > cy + r * 0.4) letterButtons.delta = true;
                 else letterButtons.delta = false;
-                if (letterButtons.alpha && !before.alpha) sendInput("alphaButton", true);
-                if (letterButtons.beta && !before.beta) sendInput("betaButton", true);
-                if (letterButtons.gamma && !before.gamma) sendInput("gammaButton", true);
-                if (letterButtons.delta && !before.delta) sendInput("deltaButton", true);
+                if (letterButtons.alpha && !before.alpha) {
+                    sendInput("alphaButton", true);
+                    haptic();
+                }
+                if (letterButtons.beta && !before.beta) {
+                    sendInput("betaButton", true);
+                    haptic();
+                }
+                if (letterButtons.gamma && !before.gamma) {
+                    sendInput("gammaButton", true);
+                    haptic();
+                }
+                if (letterButtons.delta && !before.delta) {
+                    sendInput("deltaButton", true);
+                    haptic();
+                }
                 if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
                 if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
                 if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
@@ -272,10 +311,22 @@
                 else letterButtons.gamma = false;
                 if (touch.clientY > cy + r * 0.4) letterButtons.delta = true;
                 else letterButtons.delta = false;
-                if (letterButtons.alpha && !before.alpha) sendInput("alphaButton", true);
-                if (letterButtons.beta && !before.beta) sendInput("betaButton", true);
-                if (letterButtons.gamma && !before.gamma) sendInput("gammaButton", true);
-                if (letterButtons.delta && !before.delta) sendInput("deltaButton", true);
+                if (letterButtons.alpha && !before.alpha) {
+                    sendInput("alphaButton", true);
+                    haptic();
+                }
+                if (letterButtons.beta && !before.beta) {
+                    sendInput("betaButton", true);
+                    haptic();
+                }
+                if (letterButtons.gamma && !before.gamma) {
+                    sendInput("gammaButton", true);
+                    haptic();
+                }
+                if (letterButtons.delta && !before.delta) {
+                    sendInput("deltaButton", true);
+                    haptic();
+                }
                 if (!letterButtons.alpha && before.alpha) sendInput("alphaButton", false);
                 if (!letterButtons.beta && before.beta) sendInput("betaButton", false);
                 if (!letterButtons.gamma && before.gamma) sendInput("gammaButton", false);
@@ -313,6 +364,7 @@
             e.preventDefault();
             menuButton = true;
             sendInput("menuButton", true);
+            haptic();
         }} on:touchend={() => {
             menuButton = false;
             sendInput("menuButton", false);
@@ -327,6 +379,7 @@
             e.preventDefault();
             xButton = true;
             sendInput("xButton", true);
+            haptic();
         }} on:touchend={() => {
             xButton = false;
             sendInput("xButton", false);
@@ -340,6 +393,7 @@
             e.preventDefault();
             selectButton = true;
             sendInput("selectButton", true);
+            haptic();
         }} on:touchend={() => {
             selectButton = false;
             sendInput("selectButton", false);
