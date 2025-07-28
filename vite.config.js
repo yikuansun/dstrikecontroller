@@ -7,7 +7,8 @@ export default defineConfig({
 		port: 5173
 	},
 	preview: {
-		port: 5173
+		port: 443,
+		allowedHosts: ["localhost", "omegapad.fun"]
 	},
 	plugins: [sveltekit(), webSocketServer]
 });

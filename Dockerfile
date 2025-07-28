@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port the app runs on
-EXPOSE 5173
+EXPOSE 443
 
 RUN ls -la
 
