@@ -69,6 +69,14 @@
         });
     }
 
+    function haptic2() {
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+            return;
+        }
+        haptic();
+    }
+
     onMount(() => {
         io.on('input', data => {
             console.log(data);
@@ -84,7 +92,7 @@
         <circle cx="250" cy={height - 150} r="100" fill="transparent" stroke={colorScheme.stickLeft} stroke-width="10"
             on:touchstart={(e) => {
                 e.preventDefault();
-                haptic();
+                haptic2();
                 let touch = e.changedTouches[0];
                 let cx = e.currentTarget.getBoundingClientRect().x + e.currentTarget.getBoundingClientRect().width / 2;
                 let cy = e.currentTarget.getBoundingClientRect().y + e.currentTarget.getBoundingClientRect().height / 2;
@@ -132,7 +140,7 @@
                 }
                 stickRight.moving = false;
                 sendInput("stickRight", stickRight);
-                haptic();
+                haptic2();
             }} on:touchmove={(e) => {
                 let touch = e.changedTouches[0];
                 let cx = e.currentTarget.getBoundingClientRect().x + e.currentTarget.getBoundingClientRect().width / 2;
@@ -189,19 +197,19 @@
                 }
                 if (dPad.up && !before.up) {
                     sendInput("dPadUp", true);
-                    haptic();
+                    haptic2();
                 }
                 if (dPad.down && !before.down) {
                     sendInput("dPadDown", true);
-                    haptic();
+                    haptic2();
                 }
                 if (dPad.left && !before.left) {
                     sendInput("dPadLeft", true);
-                    haptic();
+                    haptic2();
                 }
                 if (dPad.right && !before.right) {
                     sendInput("dPadRight", true);
-                    haptic();
+                    haptic2();
                 }
                 if (!dPad.up && before.up) sendInput("dPadUp", false);
                 if (!dPad.down && before.down) sendInput("dPadDown", false);
@@ -240,19 +248,19 @@
                 }
                 if (dPad.up && !before.up) {
                     sendInput("dPadUp", true);
-                    haptic();
+                    haptic2();
                 }
                 if (dPad.down && !before.down) {
                     sendInput("dPadDown", true);
-                    haptic();
+                    haptic2();
                 }
                 if (dPad.left && !before.left) {
                     sendInput("dPadLeft", true);
-                    haptic();
+                    haptic2();
                 }
                 if (dPad.right && !before.right) {
                     sendInput("dPadRight", true);
-                    haptic();
+                    haptic2();
                 }
                 if (!dPad.up && before.up) sendInput("dPadUp", false);
                 if (!dPad.down && before.down) sendInput("dPadDown", false);
@@ -297,19 +305,19 @@
                 else letterButtons.delta = false;
                 if (letterButtons.alpha && !before.alpha) {
                     sendInput("alpha", true);
-                    haptic();
+                    haptic2();
                 }
                 if (letterButtons.beta && !before.beta) {
                     sendInput("beta", true);
-                    haptic();
+                    haptic2();
                 }
                 if (letterButtons.gamma && !before.gamma) {
                     sendInput("gamma", true);
-                    haptic();
+                    haptic2();
                 }
                 if (letterButtons.delta && !before.delta) {
                     sendInput("delta", true);
-                    haptic();
+                    haptic2();
                 }
                 if (!letterButtons.alpha && before.alpha) sendInput("alpha", false);
                 if (!letterButtons.beta && before.beta) sendInput("beta", false);
@@ -332,19 +340,19 @@
                 else letterButtons.delta = false;
                 if (letterButtons.alpha && !before.alpha) {
                     sendInput("alpha", true);
-                    haptic();
+                    haptic2();
                 }
                 if (letterButtons.beta && !before.beta) {
                     sendInput("beta", true);
-                    haptic();
+                    haptic2();
                 }
                 if (letterButtons.gamma && !before.gamma) {
                     sendInput("gamma", true);
-                    haptic();
+                    haptic2();
                 }
                 if (letterButtons.delta && !before.delta) {
                     sendInput("delta", true);
-                    haptic();
+                    haptic2();
                 }
                 if (!letterButtons.alpha && before.alpha) sendInput("alpha", false);
                 if (!letterButtons.beta && before.beta) sendInput("beta", false);
@@ -383,7 +391,7 @@
             e.preventDefault();
             menuButton = true;
             sendInput("menu", true);
-            haptic();
+            haptic2();
         }} on:touchend={() => {
             menuButton = false;
             sendInput("menu", false);
@@ -398,7 +406,7 @@
             e.preventDefault();
             xButton = true;
             sendInput("x", true);
-            haptic();
+            haptic2();
         }} on:touchend={() => {
             xButton = false;
             sendInput("x", false);
@@ -412,7 +420,7 @@
             e.preventDefault();
             selectButton = true;
             sendInput("select", true);
-            haptic();
+            haptic2();
         }} on:touchend={() => {
             selectButton = false;
             sendInput("select", false);
